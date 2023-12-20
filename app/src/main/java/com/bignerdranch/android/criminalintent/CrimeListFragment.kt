@@ -111,4 +111,7 @@ class CrimeListFragment : Fragment() {
             return CrimeListFragment()
         }
     }
+kapt{
+
+}
 }
