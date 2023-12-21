@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.bignerdranch.android.criminalintent.Crime
 
 @Database(entities = [Crime::class ],
-    version=1)
+    version=1, exportSchema = false)
 @TypeConverters(CrimeTypeConverters::class)
 // Подключение конвертера в структуру базы данных
 abstract class CrimeDatabase : RoomDatabase() {

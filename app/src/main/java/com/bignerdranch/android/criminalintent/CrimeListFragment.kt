@@ -13,10 +13,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 private const val TAG = "CrimeListFragment"
 
 class CrimeListFragment : Fragment() {
+    interface Callbacks {
+        fun onCrimeSelected(crimeId: UUID)
+    }
+    private var callbacks: Callbacks? = null
+    // Выше указан интерфейс обратного вызова из фрагмента на хост активити
     private lateinit var crimeRecyclerView: RecyclerView
     private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
     private val crimeListViewModel: CrimeListViewModel by lazy {
