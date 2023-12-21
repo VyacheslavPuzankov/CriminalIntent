@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,6 +30,11 @@ class CrimeListFragment : Fragment() {
         ViewModelProviders.of(this).get(CrimeListViewModel::class.java)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
+    }
+// Переопределение функции для установки свойства callbacks
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,6 +69,11 @@ class CrimeListFragment : Fragment() {
     //Этот объект отвечает за реакцию на новые данные
     //из LiveData. В этом случае блок кода наблюдателя
     //выполняется всякий раз, когда обновляется список в LiveData
+    override fun onDetach(){
+        super.onDetach()
+        callbacks = null
+    }
+    //переопределение функции onDetach для отмены свойства callbacks
 
     private fun updateUI(crimes: List<Crime>) {
         adapter = CrimeAdapter(crimes)
